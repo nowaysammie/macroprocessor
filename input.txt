@@ -1,0 +1,18 @@
+SUMMA: macro &a=,&b=15,&c=9
+	LDO	$0,&a
+	LDO	$1,&b
+	ADD	$0,$0,$1
+	LDO	$2,&c
+	ADD	$0,$0,$2
+endm
+LOC	Data_Section
+result	IS	$255
+num1	GREG	8
+num2	GREG	21
+num3	GREG	6
+
+	LOC	#100
+Main	MUL	num3,num3,num1
+	SUMMA c=num3,a=num1
+	SUB	result,$3,$0
+	TRAP	0,Halt,0
